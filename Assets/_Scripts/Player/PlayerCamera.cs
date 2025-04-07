@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-
     public float sensitivityX;
     public float sensitivityY;
     public Transform orientation;
 
     float xRotation;
     float yRotation;
-    // Start is called before the first frame update
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen
@@ -19,6 +18,8 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.fixedDeltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.fixedDeltaTime;
 
