@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shearAttack : MonoBehaviour
+public class FTAttack : MonoBehaviour
 {
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
@@ -17,21 +17,23 @@ public class shearAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Sets attacking when lmb is pressed
         if (Input.GetMouseButtonDown(0))
         {
             attacking = true;
             print("attacking");
         }
+            
 
+        
         else if (Input.GetMouseButtonUp(0))
         {
             attacking = false;
             print("not attacking");
         }
+            
+        
     }
 
-    //Destroy enemy on trigger enter
     private void OnTriggerEnter(Collider other)
     {
         print("Touched something");
@@ -45,7 +47,7 @@ public class shearAttack : MonoBehaviour
             }
         }
     }
-    //Ensures that enemies are still damaged if they are in the trigger collider
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
