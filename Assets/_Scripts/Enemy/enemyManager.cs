@@ -6,7 +6,7 @@ public class enemyManager : MonoBehaviour
 {
     public int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
-    public float detectionRange = 10f;
+    public float detectionRange = 10f; // Distance at which the enemy detects the player
     private Transform playerTransform;
 
     // Start is called before the first frame update
