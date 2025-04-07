@@ -5,13 +5,13 @@ using UnityEngine;
 public class shearAttack : MonoBehaviour
 {
     public KeyCode attack = KeyCode.Mouse0;
-    bool attacking;
-    Animator anim;
+    public bool attacking;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -33,4 +33,32 @@ public class shearAttack : MonoBehaviour
             
         
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("Touched something");
+        if (other.CompareTag("Enemy"))
+        {
+            print("enemy touched");
+            if (attacking == true)
+            {
+                print("enemy hit by weapon");
+                Destroy(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            print("enemy touched");
+            if (attacking == true)
+            {
+                print("enemy hit by weapon");
+                Destroy(other.gameObject);
+            }
+        }
+    }
 }
+
