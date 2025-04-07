@@ -584,8 +584,6 @@ MonoBehaviour:
   m_angle: 25.1
   m_distance: 6
   m_isTrigger: 1
-  m_mesh: {fileID: 0}
-  m_localScale: {x: 0, y: 0, z: 0}
   m_isFixScale: 1
 --- !u!1 &546150075
 GameObject:
