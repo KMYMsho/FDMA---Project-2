@@ -7,6 +7,9 @@ public class FTAttack : MonoBehaviour
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
     public float damagePerSecond = 10f;
+    private float accumulatedDamage = 0f;
+    private float damageInterval = 0.5f; // Interval in seconds to apply damage
+    private float damageTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +48,7 @@ public class FTAttack : MonoBehaviour
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
-                    enemyManager.OnHit(10);
+                    enemyManager.OnHit(2);
                 }
             }
         }
@@ -55,17 +58,26 @@ public class FTAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            
             if (attacking == true)
             {
-
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
-                    // Apply damage based on delta time
-                    print(Time.deltaTime);
-                    float damage = damagePerSecond * Time.deltaTime;
-                    enemyManager.OnHit(Mathf.RoundToInt(damage));
+                    // Accumulate damage over time
+                    accumulatedDamage += damagePerSecond * Time.deltaTime;
+                    damageTimer += Time.deltaTime;
+
+                    // Apply damage at regular intervals
+                    if (damageTimer >= damageInterval)
+                    {
+                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                        if (damageToApply > 0)
+                        {
+                            enemyManager.OnHit(damageToApply);
+                            accumulatedDamage -= damageToApply;
+                        }
+                        damageTimer = 0f;
+                    }
                 }
             }
         }
