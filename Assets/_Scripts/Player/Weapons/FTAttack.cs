@@ -33,7 +33,7 @@ public class FTAttack : MonoBehaviour
             
         
     }
-
+    //Should consider adding delay to damage ticks to player can't spam damage procs
     private void OnTriggerEnter(Collider other)
     {
         print("Touched something");
