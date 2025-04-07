@@ -6,7 +6,11 @@ public class shearAttack : MonoBehaviour
 {
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
-    
+    public float damagePerSecond = 25f;
+    private float accumulatedDamage = 0f;
+    private float damageInterval = 1f; // Interval in seconds to apply damage
+    private float damageTimer = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,27 +25,30 @@ public class shearAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             attacking = true;
-            print("attacking");
+            
         }
 
         else if (Input.GetMouseButtonUp(0))
         {
             attacking = false;
-            print("not attacking");
+            
         }
     }
 
     //Destroy enemy on trigger enter
     private void OnTriggerEnter(Collider other)
     {
-        print("Touched something");
+        //print("Touched something");
         if (other.CompareTag("Enemy"))
         {
             print("enemy touched");
             if (attacking == true)
             {
-                print("enemy hit by weapon");
-                Destroy(other.gameObject);
+                enemyManager enemyManager = other.GetComponent<enemyManager>();
+                if (enemyManager != null)
+                {
+                    enemyManager.OnHit(0);
+                }
             }
         }
     }
@@ -50,11 +57,27 @@ public class shearAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            print("enemy touched");
             if (attacking == true)
             {
-                print("enemy hit by weapon");
-                Destroy(other.gameObject);
+                enemyManager enemyManager = other.GetComponent<enemyManager>();
+                if (enemyManager != null)
+                {
+                    // Accumulate damage over time
+                    accumulatedDamage += damagePerSecond * Time.deltaTime;
+                    damageTimer += Time.deltaTime;
+
+                    // Apply damage at regular intervals
+                    if (damageTimer >= damageInterval)
+                    {
+                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                        if (damageToApply > 0)
+                        {
+                            enemyManager.OnHit(damageToApply);
+                            accumulatedDamage -= damageToApply;
+                        }
+                        damageTimer = 0f;
+                    }
+                }
             }
         }
     }
