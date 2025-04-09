@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameLevelUI : MonoBehaviour
 {
@@ -12,8 +13,9 @@ public class GameLevelUI : MonoBehaviour
     [SerializeField] private GameObject levelCompleteUI;
     [SerializeField] private GameObject deathScreenUI;
     [SerializeField] private GameObject pauseMenuUI;
-    [Header("Heads Up Display (HUD)")]
     [SerializeField] private GameObject HUD;
+
+    [Header("Heads Up Display elements")]
     [SerializeField] private TextMeshProUGUI Scores;
     [SerializeField] private TextMeshProUGUI Health;
 
@@ -71,6 +73,23 @@ public class GameLevelUI : MonoBehaviour
         }
         Time.timeScale = 1f;
         HidePauseMenuUI();
+    }
+
+    public void ReloadLevel()
+    {
+        Time.timeScale = 1f;
+        Debug.Log("Reloading current level");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //GameManager.Instance.ReloadCurrentScene();
+    }
+
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Debug.Log("Loading Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void HideAllUI()

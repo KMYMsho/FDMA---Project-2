@@ -18,8 +18,15 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale == 0f) return;
-
+        if (Time.timeScale == 0f)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return;
+        }
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.fixedDeltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.fixedDeltaTime;
 

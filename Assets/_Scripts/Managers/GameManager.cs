@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -6,9 +7,7 @@ public class GameManager : Singleton<GameManager>
         MainMenu,
         LevelSelection,
         Controls, 
-        Intro, 
         Playing, 
-        Outro, 
         GameOver, 
         LevelCompleted
     }
@@ -20,14 +19,11 @@ public class GameManager : Singleton<GameManager>
         switch (CurrentState)
         {
             case GameState.MainMenu:
+                //handleMainMenu();
                 break;
             case GameState.Controls:
                 break;
             case GameState.LevelSelection:
-                break;
-            case GameState.Intro:
-                break;
-            case GameState.Outro:
                 break;
             case GameState.Playing:
                 break;
@@ -42,4 +38,14 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameState getState() => CurrentState;
+
+    //private void handleMainMenu()
+    //{
+    //    SceneManager.LoadScene("MainMenu");
+    //}
+
+    //public void ReloadCurrentScene()
+    //{
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 }
