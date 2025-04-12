@@ -1605,6 +1605,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1900618757768685686, guid: 093b02f147fd5db46b6d573e1650ab37,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495792037218599862, guid: 093b02f147fd5db46b6d573e1650ab37,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8678850509839165840, guid: 093b02f147fd5db46b6d573e1650ab37,
         type: 3}
       propertyPath: m_Pivot.x

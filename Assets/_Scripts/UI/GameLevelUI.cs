@@ -19,15 +19,18 @@ public class GameLevelUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Scores;
     [SerializeField] private TextMeshProUGUI Health;
 
+    private PlayerManager playerManager;
+
     void Awake()
     {
+        playerManager = FindObjectOfType<PlayerManager>();
         HideAllUI();
         ShowHUD();
     }
 
     void Update()
     {
-        UpdateHUD();
+        //UpdateHUD();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("Escape key pressed");
@@ -44,10 +47,10 @@ public class GameLevelUI : MonoBehaviour
         }
     }
 
-    public void UpdateHUD()
+    public void UpdateHUD(int currentScores, int currentHealth)
     {
-        Scores.text = "updated score";
-        Health.text = "updated health";
+        Scores.text = "Scores: " + currentScores;
+        Health.text = "HP: " + currentHealth;
         //scores
         //health
         // other heads up display elements

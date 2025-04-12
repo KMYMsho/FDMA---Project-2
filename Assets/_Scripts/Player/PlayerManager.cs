@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public enum EquipmentState
+    {
+        Shears,
+        Flamethrower,
+        Mower
+    }
     public int health = 50;
     private GameOverManager gameOverManager;
     private PlayerMovement playerMovement;
     private PlayerCamera playerCamera;
+    private GameLevelUI ui;
 
     // Start is called before the first frame update
     void Start()
     {
+        ui = FindObjectOfType<GameLevelUI>();
         // Find the GameOverManager in the scene
         gameOverManager = FindObjectOfType<GameOverManager>();
 
@@ -23,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ui.UpdateHUD(0, health);
     }
 
     public void OnHit(int damage)
