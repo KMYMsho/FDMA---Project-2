@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FTAttack : MonoBehaviour
 {
+    public int fuel = 100;
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
     public float damagePerSecond = 10f;

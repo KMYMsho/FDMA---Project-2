@@ -17,9 +17,15 @@ public class PlayerManager : MonoBehaviour
     private PlayerCamera playerCamera;
     private GameLevelUI ui;
 
+    public GameObject ShearsParent; 
+    public GameObject FlamethrowerParent; 
+    private EquipmentState currentEquipment = EquipmentState.Shears;
+
     // Start is called before the first frame update
     void Start()
     {
+        UpdateEquipmentState();
+
         ui = FindObjectOfType<GameLevelUI>();
         // Find the GameOverManager in the scene
         gameOverManager = FindObjectOfType<GameOverManager>();
@@ -33,6 +39,20 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         ui.UpdateHUD(0, health);
+
+        // Check for key presses to switch equipment
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            print("Shears selected");
+            currentEquipment = EquipmentState.Shears;
+            UpdateEquipmentState();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            print("Flamethrower selected");
+            currentEquipment = EquipmentState.Flamethrower;
+            UpdateEquipmentState();
+        }
     }
 
     public void OnHit(int damage)
@@ -46,6 +66,22 @@ public class PlayerManager : MonoBehaviour
             Die();
         }
 
+    }
+
+    private void UpdateEquipmentState()
+    {
+        // Enable/Disable GameObjects based on the current equipment state
+        if (ShearsParent != null)
+        {
+            ShearsParent.SetActive(currentEquipment == EquipmentState.Shears);
+        }
+
+        if (FlamethrowerParent != null)
+        {
+            FlamethrowerParent.SetActive(currentEquipment == EquipmentState.Flamethrower);
+        }
+
+        // Add logic for Mower if needed in the future
     }
     public void Die()
     {

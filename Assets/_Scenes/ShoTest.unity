@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0ed761a73e03d45a07510a82bd68c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuel: 100
   attack: 323
   attacking: 0
   damagePerSecond: 10
@@ -792,6 +793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  ShearsParent: {fileID: 1246229497}
+  FlamethrowerParent: {fileID: 1484560601}
 --- !u!1 &1246229497
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1484560602
 Transform:
   m_ObjectHideFlags: 0
