@@ -14,6 +14,8 @@ public class enemyManager : MonoBehaviour
     private float damageInterval = 0.5f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
+    public ParticleSystem deathParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,9 +99,13 @@ public class enemyManager : MonoBehaviour
                 {
                     playerManager.OnKill(); // Call the OnKill method
                 }
-            }
+            }            
+            
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
             //display death animation and gameover screen
             Destroy(gameObject);
+
+
         }
         
     }
