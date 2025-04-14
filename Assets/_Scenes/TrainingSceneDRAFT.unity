@@ -3877,6 +3877,12 @@ MonoBehaviour:
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+--- !u!1 &1764106976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3734058247733338347, guid: 093b02f147fd5db46b6d573e1650ab37,
+    type: 3}
+  m_PrefabInstance: {fileID: 8219933955873605720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1796179859
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,7 +5200,7 @@ PrefabInstance:
         type: 3}
       propertyPath: winScreenUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1764106976}
     - target: {fileID: 1482552516093407398, guid: 093b02f147fd5db46b6d573e1650ab37,
         type: 3}
       propertyPath: m_Name
