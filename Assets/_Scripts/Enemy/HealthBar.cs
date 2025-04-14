@@ -9,6 +9,7 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar(int currentValue, int maxValue)
     {
-        slider.value = (float)currentValue / maxValue;
+        slider.value = (float) currentValue / maxValue;
+        //slider.value = 1;
     }
 }

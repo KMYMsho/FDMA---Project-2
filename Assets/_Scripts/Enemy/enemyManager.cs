@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class enemyManager : MonoBehaviour
 {
-    public int maxHealth = 50;
-    public int health = 50;
+    [SerializeField] private int maxHealth = 50;
+    [SerializeField] private int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
     public float attackRange = 3f; // Distance at which the enemy can attack the player
@@ -23,6 +23,9 @@ public class enemyManager : MonoBehaviour
     void Start()
     {
         // Find the player in the scene
+        healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.UpdateHealthBar(health, maxHealth);
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -108,10 +111,6 @@ public class enemyManager : MonoBehaviour
             Instantiate(deathParticle, transform.position, Quaternion.identity);
             //display death animation and gameover screen
             Destroy(gameObject);
-
-
         }
-        
     }
-    
 }

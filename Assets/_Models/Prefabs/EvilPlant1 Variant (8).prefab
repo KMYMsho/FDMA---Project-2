@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.50980395}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -443,6 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 10
   moveSpeed: 2
   detectionRange: 10
@@ -450,6 +451,7 @@ MonoBehaviour:
   damagePerSecond: 10
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
+  healthBar: {fileID: 0}
 --- !u!54 &1988125922732633597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -502,7 +504,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8049645883608298435}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -510,7 +512,7 @@ RectTransform:
   - {fileID: 4751397912084455925}
   - {fileID: 7270006832857458151}
   m_Father: {fileID: 5372041166026813318}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 12.81}
