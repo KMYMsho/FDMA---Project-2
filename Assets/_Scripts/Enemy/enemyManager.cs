@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemyManager : MonoBehaviour
 {
     public int health = 50;
+    public int maxHealth = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
     private Transform playerTransform;
@@ -13,10 +14,13 @@ public class enemyManager : MonoBehaviour
     private float damageInterval = 0.5f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
+    [SerializeField] private HealthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
         // Find the player in the scene
+        healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.UpdateHealthBar(health, maxHealth);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -84,6 +88,7 @@ public class enemyManager : MonoBehaviour
     {
         //print("Hit");
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         print("Health: " + health);
 
         if (health <= 0)
