@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
         Mower
     }
     public int health = 50;
+    private int maxHealth = 50;
     private GameOverManager gameOverManager;
     private PlayerMovement playerMovement;
     private PlayerCamera playerCamera;
@@ -42,11 +43,11 @@ public class PlayerManager : MonoBehaviour
 
         if (health <= 0)
         {
-            die();
+            Die();
         }
 
     }
-    public void die()
+    public void Die()
     {
         Time.timeScale = 0;
 
