@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0ed761a73e03d45a07510a82bd68c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 50
+  fuel: 100
   attack: 323
   attacking: 0
   damagePerSecond: 10
