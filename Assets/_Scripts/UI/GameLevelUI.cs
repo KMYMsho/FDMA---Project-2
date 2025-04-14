@@ -12,12 +12,14 @@ public class GameLevelUI : MonoBehaviour
     private Boolean isGameOver = false;
     [SerializeField] private GameObject levelCompleteUI;
     [SerializeField] private GameObject deathScreenUI;
+    [SerializeField] private GameObject winScreenUI;
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject HUD;
 
     [Header("Heads Up Display elements")]
     [SerializeField] private TextMeshProUGUI Scores;
     [SerializeField] private TextMeshProUGUI Health;
+    [SerializeField] private TextMeshProUGUI Fuel;
 
     private PlayerManager playerManager;
 
@@ -49,7 +51,7 @@ public class GameLevelUI : MonoBehaviour
 
     public void UpdateHUD(int currentScores, int currentHealth)
     {
-        Scores.text = "Scores: " + currentScores;
+        Scores.text = "Score: " + currentScores + "/9";
         Health.text = "HP: " + currentHealth;
         //scores
         //health
@@ -99,6 +101,7 @@ public class GameLevelUI : MonoBehaviour
     {
         HideDeathScreenUI();
         HideLevelCompleteUI();
+        HideWinScreenUI();
         HidePauseMenuUI();
         HideHUD(); 
     }
@@ -114,6 +117,10 @@ public class GameLevelUI : MonoBehaviour
     public void ShowDeathScreenUI() => deathScreenUI.SetActive(true);
 
     public void HideDeathScreenUI() => deathScreenUI.SetActive(false);
+
+    public void ShowWinScreenUI() => winScreenUI.SetActive(true);
+
+    public void HideWinScreenUI() => winScreenUI.SetActive(false);
 
     public void ShowHUD() => HUD.SetActive(true); 
 

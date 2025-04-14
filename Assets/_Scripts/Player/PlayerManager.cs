@@ -31,10 +31,8 @@ public class PlayerManager : MonoBehaviour
         UpdateEquipmentState();
 
         ui = FindObjectOfType<GameLevelUI>();
-        // Find the GameOverManager in the scene
         gameOverManager = FindObjectOfType<GameOverManager>();
 
-        // Get references to the PlayerMovement and PlayerCamera scripts
         playerMovement = GetComponent<PlayerMovement>();
         playerCamera = GetComponentInChildren<PlayerCamera>();
 
@@ -50,7 +48,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ui.UpdateHUD(0, health);
+        ui.UpdateHUD(kills, health);
 
         // Check for key presses to switch equipment
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -100,10 +98,32 @@ public class PlayerManager : MonoBehaviour
         kills++;
         Debug.Log("Kills: " + kills);
 
+        if (kills >= 9)
+        {
+            Debug.Log("You win!");
+            Win();
+        }
+
         if (currentEquipment == EquipmentState.Shears && ftAttack != null)
         {
-            ftAttack.Refuel(25); // Add 25 fuel to the flamethrower
+            ftAttack.Refuel(25); // Add fuel to the flamethrower
         }
+    }
+
+    public void Win()
+    {
+        Time.timeScale = 0;
+        // Disable player movement and camera control
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+        if (playerCamera != null)
+        {
+            playerCamera.enabled = false;
+        }
+      
+        ui.ShowWinScreenUI();
     }
     public void Die()
     {

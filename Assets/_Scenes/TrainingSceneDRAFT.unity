@@ -4402,6 +4402,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7717903325919112029}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1961216364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8495792037218599862, guid: 093b02f147fd5db46b6d573e1650ab37,
+    type: 3}
+  m_PrefabInstance: {fileID: 8219933955873605720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1987241712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5045,6 +5051,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 780966764712159431, guid: 093b02f147fd5db46b6d573e1650ab37,
+        type: 3}
+      propertyPath: winScreenUI
+      value: 
+      objectReference: {fileID: 1961216364}
     - target: {fileID: 1482552516093407398, guid: 093b02f147fd5db46b6d573e1650ab37,
         type: 3}
       propertyPath: m_Name
