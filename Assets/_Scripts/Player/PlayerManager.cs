@@ -10,8 +10,10 @@ public class PlayerManager : MonoBehaviour
         Flamethrower,
         Mower
     }
-    public int health = 50;
-    private int maxHealth = 50;
+
+    public int health = 100;
+    private int maxHealth = 100;
+    private int kills = 0;
     private GameOverManager gameOverManager;
     private PlayerMovement playerMovement;
     private PlayerCamera playerCamera;
@@ -20,6 +22,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject ShearsParent; 
     public GameObject FlamethrowerParent; 
     private EquipmentState currentEquipment = EquipmentState.Shears;
+
+    private FTAttack ftAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,14 @@ public class PlayerManager : MonoBehaviour
         // Get references to the PlayerMovement and PlayerCamera scripts
         playerMovement = GetComponent<PlayerMovement>();
         playerCamera = GetComponentInChildren<PlayerCamera>();
+
+        ftAttack = FlamethrowerParent.GetComponentInChildren<FTAttack>();
+
+        if (ftAttack == null)
+        {
+            Debug.LogError("FTAttack reference is null in PlayerManager!");
+        }
+        
     }
 
     // Update is called once per frame
@@ -82,6 +94,16 @@ public class PlayerManager : MonoBehaviour
         }
 
         // Add logic for Mower if needed in the future
+    }
+    public void OnKill()
+    {
+        kills++;
+        Debug.Log("Kills: " + kills);
+
+        if (currentEquipment == EquipmentState.Shears && ftAttack != null)
+        {
+            ftAttack.Refuel(25); // Add 25 fuel to the flamethrower
+        }
     }
     public void Die()
     {

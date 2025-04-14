@@ -89,6 +89,15 @@ public class enemyManager : MonoBehaviour
 
         if (health <= 0)
         {
+            // Call OnKill from PlayerManager
+            if (playerTransform != null)
+            {
+                PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
+                if (playerManager != null)
+                {
+                    playerManager.OnKill(); // Call the OnKill method
+                }
+            }
             //display death animation and gameover screen
             Destroy(gameObject);
         }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FTAttack : MonoBehaviour
@@ -95,6 +96,12 @@ public class FTAttack : MonoBehaviour
                 }
             }
         }
+    }
+    public void Refuel(int amount)
+    {
+        fuel+=amount;
+        Debug.Log("Refueled: " + amount);
+
     }
 }
 
