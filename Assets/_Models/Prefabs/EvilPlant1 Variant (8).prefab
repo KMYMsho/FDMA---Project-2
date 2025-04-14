@@ -398,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5571276577587931581}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.69186723, z: -0, w: 0.7220248}
+  m_LocalRotation: {x: 0, y: 0.691866, z: 0, w: 0.722026}
   m_LocalPosition: {x: 358.09085, y: -3.0000114, z: 206.18988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -443,15 +443,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  health: 10
+  maxHealth: 30
+  health: 30
   moveSpeed: 2
   detectionRange: 10
   attackRange: 3
-  damagePerSecond: 10
+  damagePerSecond: 15
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7262140970627094843}
 --- !u!54 &1988125922732633597
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 7503138325495247850}
   - component: {fileID: 7262140970627094843}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: HealthBarSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
