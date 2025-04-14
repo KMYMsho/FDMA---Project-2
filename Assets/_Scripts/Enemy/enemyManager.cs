@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemyManager : MonoBehaviour
 {
+    public int maxHealth = 50;
     public int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
@@ -15,6 +16,8 @@ public class enemyManager : MonoBehaviour
     private float damageTimer = 0f;
 
     public ParticleSystem deathParticle;
+
+    [SerializeField] private HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +90,7 @@ public class enemyManager : MonoBehaviour
     {
         //print("Hit");
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         print("Health: " + health);
 
         if (health <= 0)

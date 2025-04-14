@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8846816307710333255}
   - component: {fileID: 4488316212238331404}
   m_Layer: 0
-  m_Name: Flame
+  m_Name: Goo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

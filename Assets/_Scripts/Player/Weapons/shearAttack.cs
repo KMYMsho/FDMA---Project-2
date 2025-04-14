@@ -11,6 +11,9 @@ public class shearAttack : MonoBehaviour
     private float damageInterval = 1f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
+    public ParticleSystem clippingParts;
+    public Transform snips;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,13 +61,15 @@ public class shearAttack : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             if (attacking == true)
-            {
+            {   
+               
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
                     // Accumulate damage over time
                     accumulatedDamage += damagePerSecond * Time.deltaTime;
                     damageTimer += Time.deltaTime;
+                    Instantiate(clippingParts, snips.position, Quaternion.identity);
 
                     // Apply damage at regular intervals
                     if (damageTimer >= damageInterval)
@@ -74,6 +79,7 @@ public class shearAttack : MonoBehaviour
                         {
                             enemyManager.OnHit(damageToApply);
                             accumulatedDamage -= damageToApply;
+                            
                         }
                         damageTimer = 0f;
                     }
