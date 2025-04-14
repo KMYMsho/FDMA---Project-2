@@ -17,6 +17,6 @@ public class MainMenuUI : MonoBehaviour
     void StartGame()
     {
         Debug.Log("Loading GameLevel");
-        SceneManager.LoadSceneAsync("GameLevel");
+        SceneManager.LoadSceneAsync("TutorialScene");
     }
 }
