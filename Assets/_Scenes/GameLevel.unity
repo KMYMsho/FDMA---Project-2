@@ -646,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0ed761a73e03d45a07510a82bd68c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuel: 100
   attack: 323
   attacking: 0
   damagePerSecond: 10
@@ -799,6 +800,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4178428917275614893, guid: 8acbc33f620c652499cac5f225fb80e6,
+        type: 3}
+      propertyPath: ShearsParent
+      value: 
+      objectReference: {fileID: 1016591430}
+    - target: {fileID: 4178428917275614893, guid: 8acbc33f620c652499cac5f225fb80e6,
+        type: 3}
+      propertyPath: FlamethrowerParent
+      value: 
+      objectReference: {fileID: 525061855}
     - target: {fileID: 4414015707508556960, guid: 8acbc33f620c652499cac5f225fb80e6,
         type: 3}
       propertyPath: m_Name
@@ -877,6 +888,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855201948974067271, guid: 093b02f147fd5db46b6d573e1650ab37,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8678850509839165840, guid: 093b02f147fd5db46b6d573e1650ab37,
         type: 3}

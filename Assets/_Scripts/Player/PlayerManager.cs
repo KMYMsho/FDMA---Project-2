@@ -97,9 +97,10 @@ public class PlayerManager : MonoBehaviour
             playerCamera.enabled = false;
         }
         // Show the game over screen
-        if (gameOverManager != null)
-        {
-            gameOverManager.ShowGameOver();
-        }
+        //if (gameOverManager != null)
+        //{
+        //    gameOverManager.ShowGameOver();
+        //}
+        ui.ShowDeathScreenUI();
     }
 }
