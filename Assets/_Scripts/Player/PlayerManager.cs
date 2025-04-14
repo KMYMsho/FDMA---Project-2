@@ -48,7 +48,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ui.UpdateHUD(kills, health);
+        int currentFuel = ftAttack != null ? ftAttack.fuel : 0;
+        ui.UpdateHUD(kills, health, currentFuel);
 
         // Check for key presses to switch equipment
         if (Input.GetKeyDown(KeyCode.Alpha1))
