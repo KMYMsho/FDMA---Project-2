@@ -15,6 +15,9 @@ public class FTAttack : MonoBehaviour
     private float damageInterval = 0.5f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
+    public GameObject flameParts;
+    public Transform flamePos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,11 @@ public class FTAttack : MonoBehaviour
         // Decrease fuel while attacking
         if (attacking && fuel > 0)
         {
+            // Particle Emitter
+            GameObject flame = Instantiate(flameParts, flamePos.position, Quaternion.identity);
+            flame.transform.SetParent(flamePos);
+            flame.transform.rotation = flamePos.rotation;
+
             // Accumulate fuel consumption over time
             fuelConsumptionAccumulator += fuelConsumptionRate * Time.deltaTime;
 
