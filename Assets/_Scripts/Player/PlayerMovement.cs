@@ -4,15 +4,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveForceMultiplier = 10; // Force applied is direction * this value
+    [SerializeField] private float moveForceMultiplier = 40; // Force applied is direction * this value
     [SerializeField] private float maxSpeed = 10;          // Maximum horizontal velocity
-    [SerializeField] private float groundDrag = 3f;          // Rigidbody drag when grounded
+    [SerializeField] private float groundDrag = 5f;          // Rigidbody drag when grounded
     [SerializeField] private float airDrag = 1.5f;           // Rigidbody drag when airborne (small value recommended)
     [SerializeField][Range(0f, 1f)] private float airMultiplier = 0.3f; // How much force multiplier applies in air (0=none, 1=full)
 
     [Header("Jumping")]
-    [SerializeField] private float jumpForce = 8f;         // Upward impulse force for jumping
-    [SerializeField] private float jumpCooldown = 0.5f;      // Time in seconds between allowed jumps
+    [SerializeField] private float jumpForce = 7f;         // Upward impulse force for jumping
+    [SerializeField] private float jumpCooldown = 0.25f;      // Time in seconds between allowed jumps
     private bool readyToJump = true;
     private float jumpCooldownTimer = 0f;
 
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;         // Point at the base of the player
-    [SerializeField] private float groundDistance = 0.1f;   // Radius of the CheckSphere
+    [SerializeField] private float groundDistance = 0.5f;   // Radius of the CheckSphere
     [SerializeField] private LayerMask whatIsGround;        // Layers considered ground
     private bool isGrounded;                             // Flag if player is grounded
 
