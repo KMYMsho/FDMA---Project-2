@@ -50,6 +50,10 @@ public class enemyManager : MonoBehaviour
         // Calculate the direction to the player
         Vector3 direction = (playerTransform.position - transform.position).normalized;
 
+        direction.y = 0;
+
+        direction = direction.normalized;
+
         // Move the enemy toward the player
         transform.position += direction * moveSpeed * Time.deltaTime;
     }
