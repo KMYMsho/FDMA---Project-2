@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class FTAttack : MonoBehaviour
 {
     public int fuel = 100;
+    private float fuelConsumptionRate = 10f; // Fuel consumed per second
+    private float fuelConsumptionAccumulator = 0f; // Tracks accumulated fuel consumption
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
     public float damagePerSecond = 10f;
@@ -15,7 +18,7 @@ public class FTAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,32 +27,43 @@ public class FTAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             attacking = true;
-            
         }
-            
-
-        
         else if (Input.GetMouseButtonUp(0))
         {
             attacking = false;
-            
         }
-            
-        
+
+        // Decrease fuel while attacking
+        if (attacking && fuel > 0)
+        {
+            // Accumulate fuel consumption over time
+            fuelConsumptionAccumulator += fuelConsumptionRate * Time.deltaTime;
+
+            // Deduct whole units of fuel when the accumulator reaches or exceeds 1
+            if (fuelConsumptionAccumulator >= 1f)
+            {
+                int fuelToDeduct = Mathf.FloorToInt(fuelConsumptionAccumulator);
+                fuel -= fuelToDeduct;
+                fuelConsumptionAccumulator -= fuelToDeduct;
+
+                // Ensure fuel doesn't go below 0
+                fuel = Mathf.Max(fuel, 0);
+
+                Debug.Log("Fuel: " + fuel);
+            }
+        }
     }
-    //Should consider adding delay to damage ticks to player can't spam damage procs
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            //print("enemy touched");
-            if (attacking == true)
+            if (attacking)
             {
-                //print("enemy hit by weapon");
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
-                    enemyManager.OnHit(2);
+                    enemyManager.OnHit(0);
                 }
             }
         }
@@ -59,7 +73,7 @@ public class FTAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (attacking == true)
+            if (attacking && fuel > 0)
             {
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
@@ -82,6 +96,12 @@ public class FTAttack : MonoBehaviour
                 }
             }
         }
+    }
+    public void Refuel(int amount)
+    {
+        fuel+=amount;
+        Debug.Log("Refueled: " + amount);
+
     }
 }
 

@@ -7,6 +7,7 @@ public class enemyManager : MonoBehaviour
     public int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
+    public float attackRange = 3f; // Distance at which the enemy can attack the player
     private Transform playerTransform;
     public float damagePerSecond = 10f; // Damage dealt per second to the player
     private float accumulatedDamage = 0f;
@@ -38,7 +39,7 @@ public class enemyManager : MonoBehaviour
                 MoveTowardPlayer();
             }
 
-            if(distanceToPlayer <= 2f)
+            if(distanceToPlayer <= attackRange)
             {
                 Attack();
             }
@@ -88,6 +89,15 @@ public class enemyManager : MonoBehaviour
 
         if (health <= 0)
         {
+            // Call OnKill from PlayerManager
+            if (playerTransform != null)
+            {
+                PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
+                if (playerManager != null)
+                {
+                    playerManager.OnKill(); // Call the OnKill method
+                }
+            }
             //display death animation and gameover screen
             Destroy(gameObject);
         }
