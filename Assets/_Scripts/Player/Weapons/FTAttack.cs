@@ -12,7 +12,7 @@ public class FTAttack : MonoBehaviour
     public bool attacking;
     public float damagePerSecond = 10f;
     private float accumulatedDamage = 0f;
-    private float damageInterval = 0.5f; // Interval in seconds to apply damage
+    private float damageInterval = 0.2f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
     public GameObject flameParts;
