@@ -49,7 +49,7 @@ public class FTAttack : MonoBehaviour
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
-                    enemyManager.OnHit(2);
+                    enemyManager.OnHit(0);
                 }
             }
         }
@@ -60,26 +60,33 @@ public class FTAttack : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             if (attacking == true)
+                
             {
-                enemyManager enemyManager = other.GetComponent<enemyManager>();
-                if (enemyManager != null)
+                if (fuel > 0)
                 {
-                    // Accumulate damage over time
-                    accumulatedDamage += damagePerSecond * Time.deltaTime;
-                    damageTimer += Time.deltaTime;
-
-                    // Apply damage at regular intervals
-                    if (damageTimer >= damageInterval)
+                    enemyManager enemyManager = other.GetComponent<enemyManager>();
+                    if (enemyManager != null)
                     {
-                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                        if (damageToApply > 0)
+                        // Accumulate damage over time
+                        accumulatedDamage += damagePerSecond * Time.deltaTime;
+                        damageTimer += Time.deltaTime;
+
+                        // Apply damage at regular intervals
+                        if (damageTimer >= damageInterval)
                         {
-                            enemyManager.OnHit(damageToApply);
-                            accumulatedDamage -= damageToApply;
+                            int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                            if (damageToApply > 0)
+                            {
+                                enemyManager.OnHit(damageToApply);
+                                accumulatedDamage -= damageToApply;
+                                
+                            }
+                            damageTimer = 0f;
                         }
-                        damageTimer = 0f;
                     }
+                 
                 }
+                
             }
         }
     }
