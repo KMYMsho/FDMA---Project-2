@@ -25,7 +25,8 @@ public class FTAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        healthBar.UpdateHealthBar(fuel, maxFuel);
+        healthBar2.UpdateHealthBar(fuel, maxFuel);
     }
 
     // Update is called once per frame

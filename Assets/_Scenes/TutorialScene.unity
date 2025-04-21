@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0ed761a73e03d45a07510a82bd68c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuel: 100
+  fuel: 50
   maxFuel: 100
   attack: 323
   attacking: 0
@@ -7355,7 +7355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shears refills flamethrower
+  m_text: Shears refill flamethrower
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
