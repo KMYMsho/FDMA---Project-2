@@ -8,11 +8,11 @@ public class enemyManager : MonoBehaviour
     [SerializeField] private int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
-    public float attackRange = 3f; // Distance at which the enemy can attack the player
+    public float attackRange = 2.5f; // Distance at which the enemy can attack the player
     private Transform playerTransform;
     public float damagePerSecond = 10f; // Damage dealt per second to the player
     private float accumulatedDamage = 0f;
-    private float damageInterval = 0.5f; // Interval in seconds to apply damage
+    private float damageInterval = 1f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
     public ParticleSystem deathParticle;
