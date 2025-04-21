@@ -18,18 +18,24 @@ public class enemyManager : MonoBehaviour
     public ParticleSystem deathParticle;
 
     [SerializeField] private HealthBar healthBar;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Find the player in the scene
-        //healthBar = GetComponentInChildren<HealthBar>();
         healthBar.UpdateHealthBar(health, maxHealth);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerTransform = player.transform;
+        }
+
+        // Get the Animator component
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            Debug.LogError("Animator component is missing on the enemy!");
         }
     }
 
@@ -75,6 +81,12 @@ public class enemyManager : MonoBehaviour
 
     public void Attack()
     {
+        // Play the attack animation
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
         // Accumulate damage over time
         accumulatedDamage += damagePerSecond * Time.deltaTime;
         damageTimer += Time.deltaTime;
