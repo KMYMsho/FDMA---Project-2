@@ -59,9 +59,15 @@ public class enemyManager : MonoBehaviour
         // Calculate the direction to the player
         Vector3 direction = (playerTransform.position - transform.position).normalized;
 
+        // Ignore the y-axis to prevent tilting
         direction.y = 0;
 
-        direction = direction.normalized;
+        // Rotate the enemy to face the player
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Smooth rotation
+        }
 
         // Move the enemy toward the player
         transform.position += direction * moveSpeed * Time.deltaTime;
