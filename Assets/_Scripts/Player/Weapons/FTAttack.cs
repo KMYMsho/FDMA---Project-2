@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class FTAttack : MonoBehaviour
 {
-    public int fuel = 100;
+    public int fuel = 50;
+    public int maxFuel = 100;
     private float fuelConsumptionRate = 10f; // Fuel consumed per second
     private float fuelConsumptionAccumulator = 0f; // Tracks accumulated fuel consumption
     public KeyCode attack = KeyCode.Mouse0;
@@ -17,6 +18,9 @@ public class FTAttack : MonoBehaviour
 
     public GameObject flameParts;
     public Transform flamePos;
+
+    [SerializeField] private HealthBar healthBar;
+    [SerializeField] private HealthBar healthBar2;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +64,8 @@ public class FTAttack : MonoBehaviour
                 Debug.Log("Fuel: " + fuel);
             }
         }
+        healthBar.UpdateHealthBar(fuel, maxFuel);
+        healthBar2.UpdateHealthBar(fuel, maxFuel);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -107,9 +113,11 @@ public class FTAttack : MonoBehaviour
     }
     public void Refuel(int amount)
     {
-        fuel+=amount;
+        
+        fuel +=amount;
         Debug.Log("Refueled: " + amount);
-
+        healthBar.UpdateHealthBar(fuel, maxFuel);
+        healthBar2.UpdateHealthBar(fuel, maxFuel);
     }
 }
 
