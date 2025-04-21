@@ -23,7 +23,7 @@ public class enemyManager : MonoBehaviour
     void Start()
     {
         // Find the player in the scene
-        healthBar = GetComponentInChildren<HealthBar>();
+        //healthBar = GetComponentInChildren<HealthBar>();
         healthBar.UpdateHealthBar(health, maxHealth);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

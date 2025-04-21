@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
         Flamethrower,
         Mower
     }
+    [SerializeField] private HealthBar healthBar;
 
     public int health = 100;
     private int maxHealth = 100;
@@ -32,6 +33,9 @@ public class PlayerManager : MonoBehaviour
 
         ui = FindObjectOfType<GameLevelUI>();
         gameOverManager = FindObjectOfType<GameOverManager>();
+
+        //healthBar = GetComponentInChildren<HealthBar>();
+        healthBar.UpdateHealthBar(health, maxHealth);
 
         playerMovement = GetComponent<PlayerMovement>();
         playerCamera = GetComponentInChildren<PlayerCamera>();
@@ -70,6 +74,7 @@ public class PlayerManager : MonoBehaviour
     {
         //print("Hit");
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         print("Health: " + health);
 
         if (health <= 0)
