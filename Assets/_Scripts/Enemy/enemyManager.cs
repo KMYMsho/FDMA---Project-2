@@ -8,24 +8,26 @@ public class enemyManager : MonoBehaviour
     [SerializeField] private int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
-    public float attackRange = 2.5f; // Distance at which the enemy can attack the player
+    public float attackCooldown = 2f; // Time between attacks
+    public int damage = 20;
+    private bool attacking = false;
     private Transform playerTransform;
-    public float damagePerSecond = 10f; // Damage dealt per second to the player
-    private float accumulatedDamage = 0f;
-    private float damageInterval = 1f; // Interval in seconds to apply damage
-    private float damageTimer = 0f;
 
     public ParticleSystem deathParticle;
 
     [SerializeField] private HealthBar healthBar;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Find the player in the scene
-        //healthBar = GetComponentInChildren<HealthBar>();
-        healthBar.UpdateHealthBar(health, maxHealth);
+    private float attackTimer = 0f; // Timer to track attack cooldown
 
+    private void Start()
+    {
+        // Initialize health bar
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+
+        // Find the player in the scene
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -33,12 +35,10 @@ public class enemyManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (playerTransform != null)
         {
-            // Calculate the distance between the enemy and the player
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
             // If the player is within detection range, move toward the player
@@ -46,12 +46,10 @@ public class enemyManager : MonoBehaviour
             {
                 MoveTowardPlayer();
             }
-
-            if(distanceToPlayer <= attackRange)
-            {
-                Attack();
-            }
         }
+
+        // Update the attack timer
+        attackTimer += Time.deltaTime;
     }
 
     private void MoveTowardPlayer()
@@ -73,34 +71,46 @@ public class enemyManager : MonoBehaviour
         transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
-    public void Attack()
+    private void OnTriggerStay(Collider other)
     {
-        // Accumulate damage over time
-        accumulatedDamage += damagePerSecond * Time.deltaTime;
-        damageTimer += Time.deltaTime;
-
-        // Apply damage at regular intervals
-        if (damageTimer >= damageInterval)
+        //Debug.Log("Player is in the AttackHitBox. Attacking set to true.");
+        attacking = true;
+        // Check if the player is in the AttackHitBox
+        if (other.CompareTag("Player") && attackTimer >= attackCooldown)
         {
-            PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
-            if (playerManager != null)
-            {
-                int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                if (damageToApply > 0)
-                {
-                    playerManager.OnHit(damageToApply);
-                    accumulatedDamage -= damageToApply;
-                }
-            }
-            damageTimer = 0f;
+            Attack(other);
+            attackTimer = 0f; // Reset the attack timer
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            attacking = false;
+            Debug.Log("Player left the AttackHitBox. Attacking set to false.");
+        }
+    }
+
+    public void Attack(Collider player)
+    {
+        // Deal damage to the player
+        PlayerManager playerManager = player.GetComponent<PlayerManager>();
+        if (playerManager != null)
+        {
+            playerManager.OnHit(damage); // Apply damage to the player
+            Debug.Log("Player attacked by enemy!");
+        }
+    }
+
     public void OnHit(int damage)
     {
-        //print("Hit");
         health -= damage;
-        healthBar.UpdateHealthBar(health, maxHealth);
-        print("Health: " + health);
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
+        Debug.Log("Enemy health: " + health);
 
         if (health <= 0)
         {
@@ -112,10 +122,9 @@ public class enemyManager : MonoBehaviour
                 {
                     playerManager.OnKill(); // Call the OnKill method
                 }
-            }            
-            
+            }
+
             Instantiate(deathParticle, transform.position, Quaternion.identity);
-            //display death animation and gameover screen
             Destroy(gameObject);
         }
     }
