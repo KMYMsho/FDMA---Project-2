@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class rangedPlantManager : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 50;
-    [SerializeField] private int health = 50;
-    public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
+    [SerializeField] private int maxHealth = 20;
+    [SerializeField] private int health = 20;
     public float detectionRange = 10f; // Distance at which the enemy detects the player
-    public float attackRange = 2.5f; // Distance at which the enemy can attack the player
+    public float attackRange = 20f; // Distance at which the enemy can attack the player
+    public float attackCooldown = 2f; // Time between attacks
+    public GameObject projectilePrefab; // The projectile to launch
+    public Transform projectileSpawnPoint; // Where the projectile spawns
+    public float projectileSpeed = 10f; // Speed of the projectile
+
     private Transform playerTransform;
-    public float damagePerSecond = 10f; // Damage dealt per second to the player
-    private float accumulatedDamage = 0f;
-    private float damageInterval = 1f; // Interval in seconds to apply damage
-    private float damageTimer = 0f;
+    private float attackTimer = 0f;
+    private GameObject currentProjectile; // Reference to the currently active projectile
 
     public ParticleSystem deathParticle;
 
@@ -22,13 +24,13 @@ public class rangedPlantManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Find the player in the scene
-        //healthBar = GetComponentInChildren<HealthBar>();
+        // Initialize health bar
         if (healthBar != null)
         {
             healthBar.UpdateHealthBar(health, maxHealth);
         }
 
+        // Find the player in the scene
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -44,20 +46,21 @@ public class rangedPlantManager : MonoBehaviour
             // Calculate the distance between the enemy and the player
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
-            // If the player is within detection range, move toward the player
+            // If the player is within detection range, rotate to face the player
             if (distanceToPlayer <= detectionRange)
             {
-                MoveTowardPlayer();
+                RotateTowardPlayer();
             }
 
-            if(distanceToPlayer <= attackRange)
+            // If the player is within attack range, attack
+            if (distanceToPlayer <= attackRange)
             {
                 Attack();
             }
         }
     }
 
-    private void MoveTowardPlayer()
+    private void RotateTowardPlayer()
     {
         // Calculate the direction to the player
         Vector3 direction = (playerTransform.position - transform.position).normalized;
@@ -71,38 +74,48 @@ public class rangedPlantManager : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f); // Smooth rotation
         }
-
-        // Move the enemy toward the player
-        transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
     public void Attack()
     {
-        // Accumulate damage over time
-        accumulatedDamage += damagePerSecond * Time.deltaTime;
-        damageTimer += Time.deltaTime;
-
-        // Apply damage at regular intervals
-        if (damageTimer >= damageInterval)
+        // Check if the attack cooldown has elapsed
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackCooldown)
         {
-            PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
-            if (playerManager != null)
+            // Reset the attack timer
+            attackTimer = 0f;
+
+            // Destroy the current projectile if it exists
+            if (currentProjectile != null)
             {
-                int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                if (damageToApply > 0)
+                Destroy(currentProjectile);
+            }
+
+            // Instantiate the new projectile
+            if (projectilePrefab != null && projectileSpawnPoint != null)
+            {
+                currentProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+
+                // Calculate the direction to the player
+                Vector3 direction = (playerTransform.position - projectileSpawnPoint.position).normalized;
+
+                // Set the projectile's velocity
+                Rigidbody rb = currentProjectile.GetComponent<Rigidbody>();
+                if (rb != null)
                 {
-                    playerManager.OnHit(damageToApply);
-                    accumulatedDamage -= damageToApply;
+                    rb.velocity = direction * projectileSpeed;
                 }
             }
-            damageTimer = 0f;
         }
     }
+
     public void OnHit(int damage)
     {
-        //print("Hit");
         health -= damage;
-        healthBar.UpdateHealthBar(health, maxHealth);
+        if (healthBar != null)
+        {
+            healthBar.UpdateHealthBar(health, maxHealth);
+        }
         print("Health: " + health);
 
         if (health <= 0)
@@ -115,10 +128,9 @@ public class rangedPlantManager : MonoBehaviour
                 {
                     playerManager.OnKill(); // Call the OnKill method
                 }
-            }            
-            
+            }
+
             Instantiate(deathParticle, transform.position, Quaternion.identity);
-            //display death animation and gameover screen
             Destroy(gameObject);
         }
     }
