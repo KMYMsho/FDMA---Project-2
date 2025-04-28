@@ -12103,7 +12103,7 @@ GameObject:
   - component: {fileID: 652184302}
   - component: {fileID: 652184303}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: GasPlantTEST
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23115,7 +23115,7 @@ GameObject:
   - component: {fileID: 1408523209}
   - component: {fileID: 1408523210}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: FriendlyTEST
   m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23332,7 +23332,7 @@ GameObject:
   - component: {fileID: 1416751515}
   - component: {fileID: 1416751516}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: RangedEnemyTEST
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
