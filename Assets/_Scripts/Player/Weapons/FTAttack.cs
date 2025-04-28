@@ -81,6 +81,11 @@ public class FTAttack : MonoBehaviour
                 {
                     gasPlantManager.OnHit(0);
                 }
+                rangedPlantManager rangedPlantManager = other.GetComponent<rangedPlantManager>();
+                if (rangedPlantManager != null)
+                {
+                    rangedPlantManager.OnHit(0);
+                }
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
@@ -112,6 +117,27 @@ public class FTAttack : MonoBehaviour
                         if (damageToApply > 0)
                         {
                             gasPlantManager.OnHit(damageToApply);
+                            accumulatedDamage -= damageToApply;
+                        }
+                        damageTimer = 0f;
+                    }
+                }
+
+                rangedPlantManager rangedPlantManager = other.GetComponent<rangedPlantManager>();
+
+                if (rangedPlantManager != null)
+                {
+                    // Accumulate damage over time
+                    accumulatedDamage += damagePerSecond * Time.deltaTime;
+                    damageTimer += Time.deltaTime;
+
+                    // Apply damage at regular intervals
+                    if (damageTimer >= damageInterval)
+                    {
+                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                        if (damageToApply > 0)
+                        {
+                            rangedPlantManager.OnHit(damageToApply);
                             accumulatedDamage -= damageToApply;
                         }
                         damageTimer = 0f;

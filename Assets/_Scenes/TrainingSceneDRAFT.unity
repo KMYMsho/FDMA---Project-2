@@ -298,9 +298,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 100
+  maxFuel: 100
   attack: 323
   attacking: 0
   damagePerSecond: 10
+  flameParts: {fileID: 0}
+  flamePos: {fileID: 0}
+  healthBar: {fileID: 0}
+  healthBar2: {fileID: 0}
 --- !u!23 &136031192
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -765,6 +770,8 @@ MonoBehaviour:
   attack: 323
   attacking: 0
   damagePerSecond: 25
+  clippingParts: {fileID: 0}
+  snips: {fileID: 0}
 --- !u!65 &351267235
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1329,11 +1336,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &649636573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,11 +1602,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &702629648
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1850,11 +1863,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &779765010
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2003,11 +2019,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &805238213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2261,11 +2280,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &841139248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2414,11 +2436,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &893803356
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2807,9 +2832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f2091e9ca6ac84a865253f3e5b0adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   health: 100
   ShearsParent: {fileID: 1246229497}
   FlamethrowerParent: {fileID: 1484560601}
+  WateringCanParent: {fileID: 0}
 --- !u!1 &1208242642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3605,11 +3632,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &1673529010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,11 +3902,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!1 &1764106976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3734058247733338347, guid: 093b02f147fd5db46b6d573e1650ab37,
@@ -4581,11 +4614,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4b8d73611f0b34fa839bb946abdbc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   health: 50
   moveSpeed: 0
   detectionRange: 10
   attackRange: 3
   damagePerSecond: 5
+  deathParticle: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!54 &1987241714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5020,6 +5056,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133249600}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &5535387613192141327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3846496589307429440, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_Name
+      value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 381.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 161.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e8db726bfad7ccc498fc9dddc07b6eea, type: 3}
 --- !u!1001 &7717903325919112029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5371,3 +5475,4 @@ SceneRoots:
   - {fileID: 1679195710}
   - {fileID: 8219933955873605720}
   - {fileID: 528345374}
+  - {fileID: 5535387613192141327}
