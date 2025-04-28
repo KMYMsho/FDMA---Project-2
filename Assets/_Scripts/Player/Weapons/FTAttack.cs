@@ -62,7 +62,7 @@ public class FTAttack : MonoBehaviour
                 // Ensure fuel doesn't go below 0
                 fuel = Mathf.Max(fuel, 0);
 
-                Debug.Log("Fuel: " + fuel);
+                //Debug.Log("Fuel: " + fuel);
             }
         }
         healthBar.UpdateHealthBar(fuel, maxFuel);
@@ -73,8 +73,14 @@ public class FTAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            
             if (attacking)
             {
+                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
+                if (gasPlantManager != null)
+                {
+                    gasPlantManager.OnHit(0);
+                }
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
@@ -87,9 +93,31 @@ public class FTAttack : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
+            Debug.Log("enemy touched");
         {
             if (attacking && fuel > 0)
             {
+                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
+
+                if (gasPlantManager != null)
+                {
+                    // Accumulate damage over time
+                    accumulatedDamage += damagePerSecond * Time.deltaTime;
+                    damageTimer += Time.deltaTime;
+
+                    // Apply damage at regular intervals
+                    if (damageTimer >= damageInterval)
+                    {
+                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                        if (damageToApply > 0)
+                        {
+                            gasPlantManager.OnHit(damageToApply);
+                            accumulatedDamage -= damageToApply;
+                        }
+                        damageTimer = 0f;
+                    }
+                }
+
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
