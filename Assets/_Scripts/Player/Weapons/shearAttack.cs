@@ -47,6 +47,11 @@ public class shearAttack : MonoBehaviour
             print("enemy touched");
             if (attacking == true)
             {
+                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
+                if (gasPlantManager != null)
+                {
+                    gasPlantManager.OnHit(0);
+                }
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {
@@ -61,8 +66,27 @@ public class shearAttack : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             if (attacking == true)
-            {   
-               
+            {
+                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
+
+                if (gasPlantManager != null)
+                {
+                    // Accumulate damage over time
+                    accumulatedDamage += damagePerSecond * Time.deltaTime;
+                    damageTimer += Time.deltaTime;
+
+                    // Apply damage at regular intervals
+                    if (damageTimer >= damageInterval)
+                    {
+                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
+                        if (damageToApply > 0)
+                        {
+                            gasPlantManager.OnHit(damageToApply);
+                            accumulatedDamage -= damageToApply;
+                        }
+                        damageTimer = 0f;
+                    }
+                }
                 enemyManager enemyManager = other.GetComponent<enemyManager>();
                 if (enemyManager != null)
                 {

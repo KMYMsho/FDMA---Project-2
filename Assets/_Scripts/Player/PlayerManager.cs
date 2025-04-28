@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     {
         Shears,
         Flamethrower,
+        WateringCan,
         Mower
     }
     [SerializeField] private HealthBar healthBar;
@@ -21,7 +22,8 @@ public class PlayerManager : MonoBehaviour
     private GameLevelUI ui;
 
     public GameObject ShearsParent; 
-    public GameObject FlamethrowerParent; 
+    public GameObject FlamethrowerParent;
+    public GameObject WateringCanParent;
     private EquipmentState currentEquipment = EquipmentState.Shears;
 
     private FTAttack ftAttack;
@@ -68,20 +70,32 @@ public class PlayerManager : MonoBehaviour
             currentEquipment = EquipmentState.Flamethrower;
             UpdateEquipmentState();
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            print("Watering Can selected");
+            currentEquipment = EquipmentState.WateringCan;
+            UpdateEquipmentState();
+        }
     }
 
     public void OnHit(int damage)
     {
-        //print("Hit");
         health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
-        print("Health: " + health);
+        //print("Health: " + health);
 
         if (health <= 0)
         {
             Die();
         }
 
+    }
+
+    public void Heal(int healAmount)
+    {
+        health += healAmount;
+        health = Mathf.Min(health, maxHealth); // Ensure health doesn't exceed maxHealth
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     private void UpdateEquipmentState()
@@ -95,6 +109,11 @@ public class PlayerManager : MonoBehaviour
         if (FlamethrowerParent != null)
         {
             FlamethrowerParent.SetActive(currentEquipment == EquipmentState.Flamethrower);
+        }
+
+        if (WateringCanParent != null)
+        {
+            WateringCanParent.SetActive(currentEquipment == EquipmentState.WateringCan);
         }
 
         // Add logic for Mower if needed in the future
