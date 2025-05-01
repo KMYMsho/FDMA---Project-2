@@ -18,8 +18,8 @@ public class GameLevelUI : MonoBehaviour
 
     [Header("Heads Up Display elements")]
     [SerializeField] private TextMeshProUGUI Scores;
-    [SerializeField] private TextMeshProUGUI Health;
-    [SerializeField] private TextMeshProUGUI Fuel;
+    //[SerializeField] private TextMeshProUGUI Health;
+    //[SerializeField] private TextMeshProUGUI Fuel;
 
     private PlayerManager playerManager;
 
@@ -52,8 +52,8 @@ public class GameLevelUI : MonoBehaviour
     public void UpdateHUD(int currentScores, int currentHealth, int currentFuel)
     {
         Scores.text = "Score: " + currentScores + "/9";
-        Health.text = "HP: " + currentHealth;
-        Fuel.text = "Fuel: " + currentFuel;
+        //Health.text = "HP: " + currentHealth;
+        //Fuel.text = "Fuel: " + currentFuel;
         //scores
         //health
         // other heads up display elements
