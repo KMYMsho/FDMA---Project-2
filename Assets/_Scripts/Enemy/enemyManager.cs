@@ -83,6 +83,7 @@ public class enemyManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             attacking = true;
+            animator.SetTrigger("Attack");
             if (attackTimer >= attackCooldown)
             {
                 Attack(other);
@@ -104,7 +105,7 @@ public class enemyManager : MonoBehaviour
     public void Attack(Collider player)
     {
         // Trigger the attack animation
-        animator.SetTrigger("Attack");
+        
 
         // Start a coroutine to delay the damage application
         StartCoroutine(DelayedDamage(player, 0.5f)); // Delay damage by 0.5 seconds
