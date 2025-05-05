@@ -8,10 +8,12 @@ public class enemyManager : MonoBehaviour
     [SerializeField] private int health = 50;
     public float moveSpeed = 2f; // Speed at which the enemy moves toward the player
     public float detectionRange = 10f; // Distance at which the enemy detects the player
-    public float attackCooldown = 2f; // Time between attacks
+    private float attackCooldown = 2f; // Time between attacks
     public int damage = 20;
     private bool attacking = false;
     private Transform playerTransform;
+
+    public Animator animator;
 
     public ParticleSystem deathParticle;
 
@@ -71,15 +73,22 @@ public class enemyManager : MonoBehaviour
         transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
+
     private void OnTriggerStay(Collider other)
     {
+
         //Debug.Log("Player is in the AttackHitBox. Attacking set to true.");
-        attacking = true;
+
         // Check if the player is in the AttackHitBox
-        if (other.CompareTag("Player") && attackTimer >= attackCooldown)
+        if (other.CompareTag("Player"))
         {
-            Attack(other);
-            attackTimer = 0f; // Reset the attack timer
+            attacking = true;
+            if (attackTimer >= attackCooldown)
+            {
+                Attack(other);
+                attackTimer = 0f; // Reset the attack timer
+            }
+
         }
     }
 
@@ -94,15 +103,26 @@ public class enemyManager : MonoBehaviour
 
     public void Attack(Collider player)
     {
+        // Trigger the attack animation
+        animator.SetTrigger("Attack");
+
+        // Start a coroutine to delay the damage application
+        StartCoroutine(DelayedDamage(player, 0.5f)); // Delay damage by 0.5 seconds
+    }
+
+    private IEnumerator DelayedDamage(Collider player, float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
         // Deal damage to the player
         PlayerManager playerManager = player.GetComponent<PlayerManager>();
         if (playerManager != null)
         {
             playerManager.OnHit(damage); // Apply damage to the player
-            Debug.Log("Player attacked by enemy!");
+            Debug.Log("Player attacked by enemy after delay!");
         }
     }
-
     public void OnHit(int damage)
     {
         health -= damage;
