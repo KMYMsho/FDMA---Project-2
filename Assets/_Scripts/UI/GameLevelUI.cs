@@ -49,9 +49,9 @@ public class GameLevelUI : MonoBehaviour
         }
     }
 
-    public void UpdateHUD(int currentScores, int currentHealth, int currentFuel)
+    public void UpdateHUD(int currentScores, int scoreToWin, int currentHealth, int currentFuel)
     {
-        Scores.text = "Score: " + currentScores + "/9";
+        Scores.text = "Score: " + currentScores + "/" + scoreToWin;
         //Health.text = "HP: " + currentHealth;
         //Fuel.text = "Fuel: " + currentFuel;
         //scores

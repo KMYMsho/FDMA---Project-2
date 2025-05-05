@@ -56,7 +56,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         int currentFuel = ftAttack != null ? ftAttack.fuel : 0;
-        ui.UpdateHUD(kills, health, currentFuel);
+        ui.UpdateHUD(kills, ScoreToWin, health, currentFuel);
 
         // Check for key presses to switch equipment
         if (Input.GetKeyDown(KeyCode.Alpha1))
