@@ -391,6 +391,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5168694}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &8302002 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1377475177535053145}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8730775 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 666322043866588937, guid: 05c67c39ff3eeb84b98321ec789b9df7,
@@ -1859,6 +1865,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 310010331}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3293,7 +3309,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7bde3891f79b8348831ae691e335d43,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1678141101}
   m_SourcePrefab: {fileID: 100100000, guid: c7bde3891f79b8348831ae691e335d43, type: 3}
 --- !u!4 &188689657 stripped
 Transform:
@@ -3392,7 +3412,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7bde3891f79b8348831ae691e335d43,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1957809518}
   m_SourcePrefab: {fileID: 100100000, guid: c7bde3891f79b8348831ae691e335d43, type: 3}
 --- !u!1 &194255460 stripped
 GameObject:
@@ -4987,6 +5011,7 @@ GameObject:
   - component: {fileID: 264523329}
   - component: {fileID: 264523328}
   - component: {fileID: 264523327}
+  - component: {fileID: 264523333}
   m_Layer: 0
   m_Name: Spitter
   m_TagString: Enemy
@@ -5044,6 +5069,7 @@ MonoBehaviour:
   projectileSpeed: 15
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
+  animator: {fileID: 1678141101}
   healthBar: {fileID: 358934531}
 --- !u!136 &264523329
 CapsuleCollider:
@@ -5136,6 +5162,27 @@ Transform:
   - {fileID: 188689657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180.727, z: 0}
+--- !u!95 &264523333
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264523326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1e98b1ad92432e41b1a1352cd780229, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &268468641 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 666322043866588937, guid: 05c67c39ff3eeb84b98321ec789b9df7,
@@ -5513,6 +5560,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297705303}
   m_CullTransparentMesh: 1
+--- !u!95 &310010331 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 129009365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &317183533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3362756238490617840, guid: cbae5def143b34c419efd87c5d2b3cc8,
@@ -7537,6 +7590,7 @@ GameObject:
   - component: {fileID: 398616025}
   - component: {fileID: 398616024}
   - component: {fileID: 398616023}
+  - component: {fileID: 398616029}
   m_Layer: 0
   m_Name: Spitter (1)
   m_TagString: Enemy
@@ -7594,6 +7648,7 @@ MonoBehaviour:
   projectileSpeed: 15
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
+  animator: {fileID: 1957809518}
   healthBar: {fileID: 1349333785}
 --- !u!136 &398616025
 CapsuleCollider:
@@ -7686,6 +7741,27 @@ Transform:
   - {fileID: 1603292678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180.727, z: 0}
+--- !u!95 &398616029
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398616022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1e98b1ad92432e41b1a1352cd780229, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &402587835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9218289191719140349, guid: e792b8967e4946b4499d3be2404153ac,
@@ -8507,6 +8583,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1536369080}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -9134,7 +9220,7 @@ PrefabInstance:
     - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49089506
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
         type: 3}
@@ -10015,6 +10101,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8678823145569952518, guid: ac572e3ef99296249b017b8b7f97bbdb, type: 3}
+--- !u!95 &508202483 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1338084148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &509212790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 666322043866588937, guid: 05c67c39ff3eeb84b98321ec789b9df7,
@@ -11238,6 +11330,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 678097655}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -13430,6 +13532,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: ac572e3ef99296249b017b8b7f97bbdb, type: 3}
+--- !u!95 &678097655 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 567894403}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &680325880
 GameObject:
   m_ObjectHideFlags: 0
@@ -23832,6 +23940,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 508202483}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -25365,6 +25483,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1725634160}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -25900,6 +26028,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 141452165070857699, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1473301202}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -26244,6 +26382,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: ac572e3ef99296249b017b8b7f97bbdb, type: 3}
+--- !u!95 &1473301202 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1449237540}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1484560601
 GameObject:
   m_ObjectHideFlags: 0
@@ -27080,6 +27224,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2212009239438826721, guid: ac572e3ef99296249b017b8b7f97bbdb, type: 3}
+--- !u!95 &1536369080 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 449683539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1536786055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29821,6 +29971,33 @@ Transform:
   - {fileID: 1622756594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1678141100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7bde3891f79b8348831ae691e335d43,
+    type: 3}
+  m_PrefabInstance: {fileID: 188689656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1678141101
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678141100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1e98b1ad92432e41b1a1352cd780229, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1679195707
 GameObject:
   m_ObjectHideFlags: 0
@@ -30545,6 +30722,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: ac572e3ef99296249b017b8b7f97bbdb, type: 3}
+--- !u!95 &1725634160 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7970429140715784085, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1432628851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1738470879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34131,6 +34314,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1014125068}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1957809517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c7bde3891f79b8348831ae691e335d43,
+    type: 3}
+  m_PrefabInstance: {fileID: 191209193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1957809518
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957809517}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1e98b1ad92432e41b1a1352cd780229, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1965357508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36935,7 +37145,7 @@ PrefabInstance:
     - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49089506
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 8238822720543382427, guid: e8db726bfad7ccc498fc9dddc07b6eea,
         type: 3}
@@ -38001,6 +38211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapDragon
       objectReference: {fileID: 0}
+    - target: {fileID: 1359787803406580597, guid: 5f9ac0538eaca4349b17953b14da1eb5,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8302002}
     - target: {fileID: 2744487335540781948, guid: 5f9ac0538eaca4349b17953b14da1eb5,
         type: 3}
       propertyPath: m_AnchorMax.x

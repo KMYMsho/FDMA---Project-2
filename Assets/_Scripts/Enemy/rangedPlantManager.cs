@@ -19,6 +19,8 @@ public class rangedPlantManager : MonoBehaviour
 
     public ParticleSystem deathParticle;
 
+    public Animator animator;
+
     [SerializeField] private HealthBar healthBar;
 
     // Start is called before the first frame update
@@ -78,10 +80,12 @@ public class rangedPlantManager : MonoBehaviour
 
     public void Attack()
     {
+        
         // Check if the attack cooldown has elapsed
         attackTimer += Time.deltaTime;
         if (attackTimer >= attackCooldown)
         {
+            animator.SetTrigger("Attack");
             // Reset the attack timer
             attackTimer = 0f;
 

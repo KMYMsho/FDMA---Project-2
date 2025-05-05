@@ -77,8 +77,8 @@ MonoBehaviour:
   health: 30
   moveSpeed: 0
   detectionRange: 10
-  attackCooldown: 2
   damage: 20
+  animator: {fileID: 7970429140715784085}
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
   healthBar: {fileID: 7932181907337106041}
