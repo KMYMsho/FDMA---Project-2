@@ -717,7 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 80
   health: 80
-  moveSpeed: 1
+  moveSpeed: 2
   detectionRange: 30
   attackRange: 6
   damagePerSecond: 10
