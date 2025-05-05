@@ -73,7 +73,10 @@ public class enemyManager : MonoBehaviour
         transform.position += direction * moveSpeed * Time.deltaTime;
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        animator.SetTrigger("Attack");
+    }
     private void OnTriggerStay(Collider other)
     {
 
@@ -83,7 +86,6 @@ public class enemyManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             attacking = true;
-            animator.SetTrigger("Attack");
             if (attackTimer >= attackCooldown)
             {
                 Attack(other);
