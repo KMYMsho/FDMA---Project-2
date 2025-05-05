@@ -22,11 +22,25 @@ public class FTAttack : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private HealthBar healthBar2;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip flameThrowerClip; // Audio clip for flamethrower
+    [SerializeField] private AudioSource audioSource; // Reference to the AudioSource component
+
     // Start is called before the first frame update
     void Start()
     {
         healthBar.UpdateHealthBar(fuel, maxFuel);
         healthBar2.UpdateHealthBar(fuel, maxFuel);
+
+        if (audioSource == null)
+        {
+            Debug.LogError("FTAttack: Missing AudioSource component. Please add one to the GameObject.");
+        }
+        else
+        {
+            audioSource.loop = true; // Ensure the audio loops while attacking
+            audioSource.clip = flameThrowerClip;
+        }
     }
 
     // Update is called once per frame
@@ -63,6 +77,18 @@ public class FTAttack : MonoBehaviour
                 fuel = Mathf.Max(fuel, 0);
 
                 //Debug.Log("Fuel: " + fuel);
+            }
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            // Stop the flamethrower audio if not attacking or out of fuel
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
             }
         }
         healthBar.UpdateHealthBar(fuel, maxFuel);

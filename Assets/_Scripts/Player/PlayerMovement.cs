@@ -34,10 +34,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector2 inputVector;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip walkingClip;          // Audio clip for walking
+    [SerializeField] private AudioClip sprintingClip;        // Audio clip for sprinting
+    [SerializeField] private AudioSource audioSource;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Prevent physics rotation
+
+        //audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true; // Ensure the audio loops while moving
 
         if (orientation == null)
         {
@@ -73,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
 
         // --- Speed Control ---
         SpeedControl();
+
+        // --- Handle Audio ---
+        HandleAudio();
     }
 
     void FixedUpdate()
@@ -152,6 +163,39 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void HandleAudio()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        bool isMoving = flatVel.magnitude > 0.1f && isGrounded;
+
+        if (isMoving)
+        {
+            if (Input.GetKey(sprintKey))
+            {
+                if (audioSource.clip != sprintingClip)
+                {
+                    audioSource.clip = sprintingClip;
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                if (audioSource.clip != walkingClip)
+                {
+                    audioSource.clip = walkingClip;
+                    audioSource.Play();
+                }
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
     }
 
     // Optional: Visualize ground check sphere in Scene view for debugging
