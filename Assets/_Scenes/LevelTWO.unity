@@ -4048,7 +4048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack: 323
   attacking: 0
-  damagePerSecond: 25
+  damagePerSecond: 15
   attackDelay: 0.5
   clippingParts: {fileID: 7954537334502781702, guid: 16dfb4bd6d84ce748973e9ee82e8499f,
     type: 3}

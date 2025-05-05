@@ -6,7 +6,7 @@ public class shearAttack : MonoBehaviour
 {
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
-    public float damagePerSecond = 25f;
+    public float damagePerSecond = 15f;
     public float attackDelay = .5f; // Delay between attacks
     public ParticleSystem clippingParts;
     public Transform snips;
