@@ -89,6 +89,7 @@ public class enemyManager : MonoBehaviour
         // Check if the player is in the AttackHitBox
         if (other.CompareTag("Player"))
         {
+            animator.SetTrigger("Attack");
             attacking = true;
             if (attackTimer >= attackCooldown)
             {
