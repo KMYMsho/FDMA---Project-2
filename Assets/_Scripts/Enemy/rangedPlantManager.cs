@@ -85,11 +85,11 @@ public class rangedPlantManager : MonoBehaviour
             // Reset the attack timer
             attackTimer = 0f;
 
-            // Destroy the current projectile if it exists
-            if (currentProjectile != null)
-            {
-                Destroy(currentProjectile);
-            }
+            //// Destroy the current projectile if it exists
+            //if (currentProjectile != null)
+            //{
+            //    Destroy(currentProjectile);
+            //}
 
             // Instantiate the new projectile
             if (projectilePrefab != null && projectileSpawnPoint != null)

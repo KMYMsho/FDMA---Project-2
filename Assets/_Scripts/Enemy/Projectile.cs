@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
             // Destroy the projectile after hitting the player
             Destroy(gameObject);
         }
-        else if (!other.CompareTag("Enemy") && !other.CompareTag("Tool") && !other.CompareTag("Weapon"))
+        else if (!other.CompareTag("Enemy") && !other.CompareTag("Tool") && !other.CompareTag("Weapon") && !other.CompareTag("Friendly"))
         {
             // Destroy the projectile if it hits any other object
             Destroy(gameObject);
