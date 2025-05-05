@@ -8,12 +8,13 @@ public class shearAttack : MonoBehaviour
     public bool attacking;
     public float damagePerSecond = 25f;
     private float accumulatedDamage = 0f;
-    private float damageInterval = 0.5f; // Interval in seconds to apply damage
+    private float damageInterval = 0.3f; // Interval in seconds to apply damage
     private float damageTimer = 0f;
 
     public ParticleSystem clippingParts;
     public Transform snips;
 
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,7 @@ public class shearAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             attacking = true;
-            
+            animator.SetTrigger("Attack");
         }
 
         else if (Input.GetMouseButtonUp(0))

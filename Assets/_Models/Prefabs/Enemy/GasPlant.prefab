@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 8617741794118538936}
   - component: {fileID: 1543310663878539453}
   m_Layer: 0
-  m_Name: GasPlantTEST (1)
+  m_Name: GasPlant
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,6 +723,7 @@ MonoBehaviour:
   damagePerSecond: 10
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
     type: 3}
+  animator: {fileID: 7114441405355328404}
   healthBar: {fileID: 5982592586079743745}
 --- !u!1 &4678085335507294989
 GameObject:
@@ -900,6 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2924930407254754535}
+  - component: {fileID: 7114441405355328404}
   m_Layer: 0
   m_Name: EvilPlant3
   m_TagString: Untagged
@@ -915,7 +917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5348561812342997625}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.01, y: -0.047, z: 0.006}
   m_LocalScale: {x: 0.117605105, y: 0.117605105, z: 0.117605105}
   m_ConstrainProportionsScale: 0
@@ -923,7 +925,28 @@ Transform:
   - {fileID: 5523784387448985196}
   - {fileID: 1032215395137411235}
   m_Father: {fileID: 3175436112599959369}
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!95 &7114441405355328404
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5348561812342997625}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 272975c38475d6149bd07102893bd79c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5509146133518583992
 GameObject:
   m_ObjectHideFlags: 0

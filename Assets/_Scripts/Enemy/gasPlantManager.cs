@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class gasPlantManager : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 80;
-    [SerializeField] private int health = 80;
+    [SerializeField] private int maxHealth = 40;
+    [SerializeField] private int health = 40;
     public float moveSpeed = 1f; // Speed at which the enemy moves toward the player
     public float detectionRange = 20f; // Distance at which the enemy detects the player
     public float attackRange = 6f; // Distance at which the enemy can attack the player
@@ -16,6 +16,8 @@ public class gasPlantManager : MonoBehaviour
     private float damageTimer = 0f;
 
     public ParticleSystem deathParticle;
+
+    public Animator animator;
 
     [SerializeField] private HealthBar healthBar;
 
@@ -79,6 +81,7 @@ public class gasPlantManager : MonoBehaviour
 
     public void Attack()
     {
+        animator.SetTrigger("Attack");
         // Accumulate damage over time
         accumulatedDamage += damagePerSecond * Time.deltaTime;
         damageTimer += Time.deltaTime;
@@ -86,6 +89,7 @@ public class gasPlantManager : MonoBehaviour
         // Apply damage at regular intervals
         if (damageTimer >= damageInterval)
         {
+            
             PlayerManager playerManager = playerTransform.GetComponent<PlayerManager>();
             if (playerManager != null)
             {

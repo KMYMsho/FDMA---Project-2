@@ -6,8 +6,8 @@ public class WateringCan : MonoBehaviour
 {
     public KeyCode attack = KeyCode.Mouse0;
     public bool watering;
-    
-    
+
+    public Animator animator;
 
 
 
@@ -24,7 +24,7 @@ public class WateringCan : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             watering = true;
-            
+            animator.SetTrigger("Water");
         }
 
         else if (Input.GetMouseButtonUp(0))
