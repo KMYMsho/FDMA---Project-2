@@ -9,56 +9,46 @@ public class WateringCan : MonoBehaviour
 
     public Animator animator;
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        //Sets attacking when lmb is pressed
+        // Start watering when the left mouse button is pressed
         if (Input.GetMouseButtonDown(0))
         {
             watering = true;
-            animator.SetTrigger("Water");
+            animator.SetBool("IsWatering", true); // Set the boolean parameter to true
         }
 
+        // Stop watering when the left mouse button is released
         else if (Input.GetMouseButtonUp(0))
         {
             watering = false;
-            
+            animator.SetBool("IsWatering", false); // Set the boolean parameter to false
         }
     }
 
-    //Destroy enemy on trigger enter
+    // Heal friendly objects on trigger enter
     private void OnTriggerEnter(Collider other)
     {
-        //print("Touched something");
-        if (other.CompareTag("Friendly"))
+        if (other.CompareTag("Friendly") && watering)
         {
-            print("enemy touched");
-            if (watering == true)
+            FriendlyManager friendlyManager = other.GetComponent<FriendlyManager>();
+            if (friendlyManager != null)
             {
-                FriendlyManager friendlyManager = other.GetComponent<FriendlyManager>();
                 friendlyManager.HealPlayer(50);
             }
         }
     }
-    //Ensures that enemies are still damaged if they are in the trigger collider
+
+    // Heal friendly objects while staying in the trigger collider
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Friendly"))
+        if (other.CompareTag("Friendly") && watering)
         {
-            if (watering == true)
+            FriendlyManager friendlyManager = other.GetComponent<FriendlyManager>();
+            if (friendlyManager != null)
             {
-                FriendlyManager friendlyManager = other.GetComponent<FriendlyManager>();
                 friendlyManager.HealPlayer(50);
-
-
             }
         }
     }
