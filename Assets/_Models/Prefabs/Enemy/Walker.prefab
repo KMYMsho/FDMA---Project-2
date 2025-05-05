@@ -507,8 +507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   health: 30
-  moveSpeed: 5
-  detectionRange: 30
+  moveSpeed: 4
+  detectionRange: 20
   damage: 20
   animator: {fileID: 7122654867604706512}
   deathParticle: {fileID: 8846816307710333255, guid: 4e6cb5e0f8f7d394789bfd834f9e087f,
