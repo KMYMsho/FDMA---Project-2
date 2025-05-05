@@ -17064,7 +17064,7 @@ PrefabInstance:
     - target: {fileID: 8020884619170070646, guid: 6d0d36bdbc2cf4a45b48373b2abd88df,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.051971
+      value: 27.866
       objectReference: {fileID: 0}
     - target: {fileID: 8020884619170070646, guid: 6d0d36bdbc2cf4a45b48373b2abd88df,
         type: 3}
@@ -17074,7 +17074,7 @@ PrefabInstance:
     - target: {fileID: 8020884619170070646, guid: 6d0d36bdbc2cf4a45b48373b2abd88df,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.55278
+      value: 9.944
       objectReference: {fileID: 0}
     - target: {fileID: 8020884619170070646, guid: 6d0d36bdbc2cf4a45b48373b2abd88df,
         type: 3}
@@ -36763,6 +36763,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7072302
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7069834
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032215395137411235, guid: b6099eef5f3d49a439d53643a624e6f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 1664511891765046769, guid: b6099eef5f3d49a439d53643a624e6f7,
         type: 3}
       propertyPath: m_AnchorMax.x
