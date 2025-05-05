@@ -7,132 +7,87 @@ public class shearAttack : MonoBehaviour
     public KeyCode attack = KeyCode.Mouse0;
     public bool attacking;
     public float damagePerSecond = 25f;
-    private float accumulatedDamage = 0f;
-    private float damageInterval = 0.3f; // Interval in seconds to apply damage
-    private float damageTimer = 0f;
-
+    public float attackDelay = .5f; // Delay between attacks
     public ParticleSystem clippingParts;
     public Transform snips;
 
     public Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool canAttack = true; // Cooldown flag
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Sets attacking when lmb is pressed
-        if (Input.GetMouseButtonDown(0))
+        // Check for left mouse button click and if the player can attack
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
             attacking = true;
             animator.SetTrigger("Attack");
+            ApplyDamageToEnemiesInHitbox();
+            StartCoroutine(AttackCooldown());
         }
 
+        // Stop attacking when the left mouse button is released
         else if (Input.GetMouseButtonUp(0))
         {
             attacking = false;
-            
         }
     }
 
-    //Destroy enemy on trigger enter
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator AttackCooldown()
     {
-        //print("Touched something");
-        if (other.CompareTag("Enemy"))
-        {
-            print("enemy touched");
-            if (attacking == true)
-            {
-                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
-                if (gasPlantManager != null)
-                {
-                    gasPlantManager.OnHit(0);
-                }
-                rangedPlantManager rangedPlantManager = other.GetComponent<rangedPlantManager>();
-                if (rangedPlantManager != null)
-                {
-                    rangedPlantManager.OnHit(0);
-                }
-                enemyManager enemyManager = other.GetComponent<enemyManager>();
-                if (enemyManager != null)
-                {
-                    enemyManager.OnHit(0);
-                }
-            }
-        }
+        // Disable attacking during cooldown
+        canAttack = false;
+
+        // Wait for the specified delay
+        yield return new WaitForSeconds(attackDelay);
+
+        // Re-enable attacking
+        canAttack = true;
     }
-    //Ensures that enemies are still damaged if they are in the trigger collider
-    private void OnTriggerStay(Collider other)
+
+    private void ApplyDamageToEnemiesInHitbox()
     {
-        if (other.CompareTag("Enemy"))
+        // Find all colliders in the hitbox
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1.5f); // Adjust radius as needed
+        foreach (Collider collider in hitColliders)
         {
-            if (attacking == true)
+            if (collider.CompareTag("Enemy"))
             {
-                gasPlantManager gasPlantManager = other.GetComponent<gasPlantManager>();
-
-                if (gasPlantManager != null)
+                // Apply damage to the enemy
+                enemyManager enemy = collider.GetComponent<enemyManager>();
+                if (enemy != null)
                 {
-                    // Accumulate damage over time
-                    accumulatedDamage += damagePerSecond * Time.deltaTime;
-                    damageTimer += Time.deltaTime;
-
-                    // Apply damage at regular intervals
-                    if (damageTimer >= damageInterval)
-                    {
-                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                        if (damageToApply > 0)
-                        {
-                            gasPlantManager.OnHit(damageToApply);
-                            accumulatedDamage -= damageToApply;
-                        }
-                        damageTimer = 0f;
-                    }
+                    enemy.OnHit((int)damagePerSecond);
                 }
-                rangedPlantManager rangedPlantManager = other.GetComponent<rangedPlantManager>();
 
-                if (rangedPlantManager != null)
+                // Play particle effect
+                if (clippingParts != null && snips != null)
                 {
-                    // Accumulate damage over time
-                    accumulatedDamage += damagePerSecond * Time.deltaTime;
-                    damageTimer += Time.deltaTime;
-
-                    // Apply damage at regular intervals
-                    if (damageTimer >= damageInterval)
-                    {
-                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                        if (damageToApply > 0)
-                        {
-                            rangedPlantManager.OnHit(damageToApply);
-                            accumulatedDamage -= damageToApply;
-                        }
-                        damageTimer = 0f;
-                    }
-                }
-                enemyManager enemyManager = other.GetComponent<enemyManager>();
-                if (enemyManager != null)
-                {
-                    // Accumulate damage over time
-                    accumulatedDamage += damagePerSecond * Time.deltaTime;
-                    damageTimer += Time.deltaTime;
                     Instantiate(clippingParts, snips.position, Quaternion.identity);
+                }
 
-                    // Apply damage at regular intervals
-                    if (damageTimer >= damageInterval)
-                    {
-                        int damageToApply = Mathf.FloorToInt(accumulatedDamage);
-                        if (damageToApply > 0)
-                        {
-                            enemyManager.OnHit(damageToApply);
-                            accumulatedDamage -= damageToApply;
-                            
-                        }
-                        damageTimer = 0f;
-                    }
+                rangedPlantManager rangedEnemy = collider.GetComponent<rangedPlantManager>();
+                if (rangedEnemy != null)
+                {
+                    rangedEnemy.OnHit((int)damagePerSecond);
+                }
+
+                // Play particle effect
+                if (clippingParts != null && snips != null)
+                {
+                    Instantiate(clippingParts, snips.position, Quaternion.identity);
+                }
+
+                gasPlantManager gasEnemy = collider.GetComponent<gasPlantManager>();
+                if (gasEnemy != null)
+                {
+                    gasEnemy.OnHit((int)damagePerSecond);
+                }
+
+                // Play particle effect
+                if (clippingParts != null && snips != null)
+                {
+                    Instantiate(clippingParts, snips.position, Quaternion.identity);
                 }
             }
         }
