@@ -12,12 +12,12 @@ EditorBuildSettings:
     path: Assets/_Scenes/TutorialScene.unity
     guid: af0828fa924ce2f428af1e08099120db
   - enabled: 0
-    path: Assets/_Scenes/GameLevel.unity
+    path: Assets/_Scenes/TestScenes/GameLevel.unity
     guid: 20b0f5cab6ea4294092811407fff8907
   - enabled: 0
     path: Assets/_Scenes/Bootstrap.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
-    path: Assets/_Scenes/ShoTest.unity
+    path: Assets/_Scenes/TestScenes/ShoTest.unity
     guid: 7ba5561554d28a945a417129f613e763
   m_configObjects: {}

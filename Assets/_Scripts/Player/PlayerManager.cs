@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public int health = 100;
     private int maxHealth = 100;
     private int kills = 0;
+    public int ScoreToWin = 10;
     private GameOverManager gameOverManager;
     private PlayerMovement playerMovement;
     private PlayerCamera playerCamera;
@@ -123,7 +124,7 @@ public class PlayerManager : MonoBehaviour
         kills++;
         Debug.Log("Kills: " + kills);
 
-        if (kills >= 9)
+        if (kills >= ScoreToWin)
         {
             Debug.Log("You win!");
             Win();
