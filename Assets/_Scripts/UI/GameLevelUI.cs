@@ -98,6 +98,15 @@ public class GameLevelUI : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadLevelTwo()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Debug.Log("Level Two Loading");
+        SceneManager.LoadScene("LevelTWO");
+    }
+
     public void HideAllUI()
     {
         HideDeathScreenUI();
