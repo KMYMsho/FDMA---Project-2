@@ -75,7 +75,11 @@ public class enemyManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetTrigger("Attack");
+        if (other.CompareTag("Player"))
+        {
+            // Start attacking the player
+            animator.SetTrigger("Attack");
+        }
     }
     private void OnTriggerStay(Collider other)
     {
