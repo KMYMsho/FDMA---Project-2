@@ -20,6 +20,7 @@ public class enemyManager : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
 
     private float attackTimer = 0f; // Timer to track attack cooldown
+    private Coroutine damageCoroutine; // Reference to the DelayedDamage coroutine
 
     private void Start()
     {
@@ -81,11 +82,9 @@ public class enemyManager : MonoBehaviour
             animator.SetTrigger("Attack");
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-
-        //Debug.Log("Player is in the AttackHitBox. Attacking set to true.");
-
         // Check if the player is in the AttackHitBox
         if (other.CompareTag("Player"))
         {
@@ -96,7 +95,6 @@ public class enemyManager : MonoBehaviour
                 Attack(other);
                 attackTimer = 0f; // Reset the attack timer
             }
-
         }
     }
 
@@ -106,16 +104,24 @@ public class enemyManager : MonoBehaviour
         {
             attacking = false;
             Debug.Log("Player left the AttackHitBox. Attacking set to false.");
+
+            // Stop the DelayedDamage coroutine if it's running
+            if (damageCoroutine != null)
+            {
+                StopCoroutine(damageCoroutine);
+                damageCoroutine = null;
+            }
         }
     }
 
     public void Attack(Collider player)
     {
-        // Trigger the attack animation
-        
-
-        // Start a coroutine to delay the damage application
-        StartCoroutine(DelayedDamage(player, 0.5f)); // Delay damage by 0.5 seconds
+        // Only start the coroutine if the player is still in the hitbox
+        if (attacking)
+        {
+            // Start a coroutine to delay the damage application
+            damageCoroutine = StartCoroutine(DelayedDamage(player, 0.5f)); // Delay damage by 0.5 seconds
+        }
     }
 
     private IEnumerator DelayedDamage(Collider player, float delay)
@@ -123,14 +129,18 @@ public class enemyManager : MonoBehaviour
         // Wait for the specified delay
         yield return new WaitForSeconds(delay);
 
-        // Deal damage to the player
-        PlayerManager playerManager = player.GetComponent<PlayerManager>();
-        if (playerManager != null)
+        // Check if the player is still in the hitbox before applying damage
+        if (attacking)
         {
-            playerManager.OnHit(damage); // Apply damage to the player
-            Debug.Log("Player attacked by enemy after delay!");
+            PlayerManager playerManager = player.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                playerManager.OnHit(damage); // Apply damage to the player
+                Debug.Log("Player attacked by enemy after delay!");
+            }
         }
     }
+
     public void OnHit(int damage)
     {
         health -= damage;
