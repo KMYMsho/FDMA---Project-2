@@ -88,7 +88,7 @@ public class enemyManager : MonoBehaviour
         // Check if the player is in the AttackHitBox
         if (other.CompareTag("Player"))
         {
-            animator.SetTrigger("Attack");
+            
             attacking = true;
             if (attackTimer >= attackCooldown)
             {
@@ -119,6 +119,7 @@ public class enemyManager : MonoBehaviour
         // Only start the coroutine if the player is still in the hitbox
         if (attacking)
         {
+            animator.SetTrigger("Attack");
             // Start a coroutine to delay the damage application
             damageCoroutine = StartCoroutine(DelayedDamage(player, 0.5f)); // Delay damage by 0.5 seconds
         }
