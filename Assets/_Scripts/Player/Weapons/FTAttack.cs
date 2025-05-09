@@ -196,6 +196,7 @@ public class FTAttack : MonoBehaviour
     {
         
         fuel +=amount;
+        fuel = Mathf.Min(fuel, maxFuel);
         Debug.Log("Refueled: " + amount);
         healthBar.UpdateHealthBar(fuel, maxFuel);
         healthBar2.UpdateHealthBar(fuel, maxFuel);
