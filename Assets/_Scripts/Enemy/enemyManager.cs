@@ -22,6 +22,12 @@ public class enemyManager : MonoBehaviour
     private float attackTimer = 0f; // Timer to track attack cooldown
     private Coroutine damageCoroutine; // Reference to the DelayedDamage coroutine
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource walkingAudioSource; // **NEW** AudioSource for walking sound
+    [SerializeField] private AudioClip walkingClip;
+
+    private bool isWalking = false;
+
     private void Start()
     {
         // Initialize health bar
@@ -36,6 +42,16 @@ public class enemyManager : MonoBehaviour
         {
             playerTransform = player.transform;
         }
+
+        if (walkingAudioSource == null)
+        {
+            Debug.LogError("enemyManager: Missing AudioSource component for walking sound. Please assign it in the inspector.");
+        }
+        else
+        {
+            walkingAudioSource.loop = true; // Ensure the walking sound loops
+            walkingAudioSource.clip = walkingClip;
+        }
     }
 
     private void Update()
@@ -48,6 +64,10 @@ public class enemyManager : MonoBehaviour
             if (distanceToPlayer <= detectionRange)
             {
                 MoveTowardPlayer();
+            }
+            else
+            {
+                StopWalking(); // **NEW** Stop walking sound if the enemy is not moving
             }
         }
 
@@ -72,6 +92,31 @@ public class enemyManager : MonoBehaviour
 
         // Move the enemy toward the player
         transform.position += direction * moveSpeed * Time.deltaTime;
+        StartWalking();
+    }
+
+    private void StartWalking() 
+    {
+        if (!isWalking)
+        {
+            isWalking = true;
+            if (walkingAudioSource != null && !walkingAudioSource.isPlaying)
+            {
+                walkingAudioSource.Play();
+            }
+        }
+    }
+
+    private void StopWalking() 
+    {
+        if (isWalking)
+        {
+            isWalking = false;
+            if (walkingAudioSource != null && walkingAudioSource.isPlaying)
+            {
+                walkingAudioSource.Stop();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
