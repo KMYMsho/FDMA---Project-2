@@ -23,6 +23,11 @@ public class rangedPlantManager : MonoBehaviour
 
     [SerializeField] private HealthBar healthBar;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource attackAudioSource; //  Reference to the AudioSource for attack sound
+    [SerializeField] private AudioClip attackClip; //  Audio clip for the attack sound
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +42,11 @@ public class rangedPlantManager : MonoBehaviour
         if (player != null)
         {
             playerTransform = player.transform;
+        }
+
+        if (attackAudioSource == null)
+        {
+            Debug.LogError("rangedPlantManager: Missing AudioSource component for attack sound. Please assign it in the inspector.");
         }
     }
 
@@ -88,6 +98,12 @@ public class rangedPlantManager : MonoBehaviour
             animator.SetTrigger("Attack");
             // Reset the attack timer
             attackTimer = 0f;
+
+            // **NEW** Play the attack sound
+            if (attackAudioSource != null && attackClip != null)
+            {
+                attackAudioSource.PlayOneShot(attackClip);
+            }
 
             //// Destroy the current projectile if it exists
             //if (currentProjectile != null)
