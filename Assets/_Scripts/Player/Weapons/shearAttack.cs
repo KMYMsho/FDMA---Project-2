@@ -15,6 +15,10 @@ public class shearAttack : MonoBehaviour
 
     private bool canAttack = true; // Cooldown flag
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource attackAudioSource; // **NEW** AudioSource for attack sound
+    [SerializeField] private AudioClip attackClip;
+
     private void Update()
     {
         // Check for left mouse button click and if the player can attack
@@ -22,6 +26,11 @@ public class shearAttack : MonoBehaviour
         {
             attacking = true;
             animator.SetTrigger("Attack");
+
+            if (attackAudioSource != null && attackClip != null)
+            {
+                attackAudioSource.PlayOneShot(attackClip);
+            }
             ApplyDamageToEnemiesInHitbox();
             StartCoroutine(AttackCooldown());
         }
