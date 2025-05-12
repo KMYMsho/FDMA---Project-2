@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     private EquipmentState currentEquipment = EquipmentState.Shears;
 
     private FTAttack ftAttack;
+    private shearAttack shearAttackScript;
 
     // Start is called before the first frame update
     void Start()
@@ -58,24 +59,49 @@ public class PlayerManager : MonoBehaviour
         int currentFuel = ftAttack != null ? ftAttack.fuel : 0;
         ui.UpdateHUD(kills, ScoreToWin, health, currentFuel);
 
-        // Check for key presses to switch equipment
+        // Prevent switching away from shears if canAttack is false
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            print("Shears selected");
-            currentEquipment = EquipmentState.Shears;
-            UpdateEquipmentState();
+            if (currentEquipment != EquipmentState.Shears ||
+                (shearAttackScript != null && shearAttackScript.canAttack))
+            {
+                print("Shears selected");
+                currentEquipment = EquipmentState.Shears;
+                UpdateEquipmentState();
+            }
+            else
+            {
+                Debug.Log("Cannot switch weapons while shears are in cooldown!");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            print("Flamethrower selected");
-            currentEquipment = EquipmentState.Flamethrower;
-            UpdateEquipmentState();
+            // Prevent switching away from shears if canAttack is false
+            if (currentEquipment != EquipmentState.Shears ||
+                (shearAttackScript != null && shearAttackScript.canAttack))
+            {
+                print("Flamethrower selected");
+                currentEquipment = EquipmentState.Flamethrower;
+                UpdateEquipmentState();
+            }
+            else
+            {
+                Debug.Log("Cannot switch weapons while shears are in cooldown!");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            print("Watering Can selected");
-            currentEquipment = EquipmentState.WateringCan;
-            UpdateEquipmentState();
+            if (currentEquipment != EquipmentState.Shears ||
+                (shearAttackScript != null && shearAttackScript.canAttack))
+            {
+                print("Watering Can selected");
+                currentEquipment = EquipmentState.WateringCan;
+                UpdateEquipmentState();
+            }
+            else
+            {
+                Debug.Log("Cannot switch weapons while shears are in cooldown!");
+            }
         }
     }
 
@@ -104,6 +130,10 @@ public class PlayerManager : MonoBehaviour
         // Enable/Disable GameObjects based on the current equipment state
         if (ShearsParent != null)
         {
+            if (ShearsParent != null)
+            {
+                shearAttackScript = ShearsParent.GetComponentInChildren<shearAttack>();
+            }
             ShearsParent.SetActive(currentEquipment == EquipmentState.Shears);
         }
 

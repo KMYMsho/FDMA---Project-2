@@ -13,7 +13,7 @@ public class shearAttack : MonoBehaviour
 
     public Animator animator;
 
-    private bool canAttack = true; // Cooldown flag
+    public bool canAttack = true; // Cooldown flag
 
     [Header("Audio")]
     [SerializeField] private AudioSource attackAudioSource; // **NEW** AudioSource for attack sound
